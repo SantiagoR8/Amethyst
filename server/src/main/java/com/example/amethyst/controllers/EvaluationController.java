@@ -30,26 +30,26 @@ public class EvaluationController {
 	}
 	
 	@GetMapping("/evaluations/{id}")
-	public Evaluation getAssessmentById(@PathVariable(value="id") Long id) {
+	public Evaluation getEvaluationById(@PathVariable(value="id") Long id) {
 		return evaluationService.getEvaluationById(id);
 	}
 	
 	@PostMapping("/evaluations")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Evaluation createTest(@RequestBody Evaluation evaluation) {
+	public Evaluation createEvaluation(@RequestBody Evaluation evaluation) {
 		return evaluationService.saveEvaluation(evaluation);				
 	}
 	
 	@PutMapping(value = "/evaluations/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void updateTest(@PathVariable("id") Long id, @RequestBody Evaluation evaluation) {
+	public void updateEvaluation(@PathVariable("id") Long id, @RequestBody Evaluation evaluation) {
 		evaluationService.getEvaluationById(id);
 		evaluationService.saveEvaluation(evaluation);
 	}
 	
 	@DeleteMapping("/evaluations/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void deleteTest(@PathVariable("id") Long id) {
+	public void deleteEvaluation(@PathVariable("id") Long id) {
 		evaluationService.deleteEvaluationById(id);
 	}
 }
