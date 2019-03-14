@@ -2,6 +2,13 @@ package com.example.amethyst.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "options")
 public class Option {
@@ -17,11 +24,9 @@ public class Option {
 	private String text;
 	private boolean isCorrect;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "question_id", nullable = false)
-	private Question question;
-	
-	public Option() {
-	}
+	private Question question;	
 
 }

@@ -10,4 +10,5 @@ public interface QuestionService {
 	Question getQuestionById(Long id);
 	Question saveQuestion(Question question);
 	void deleteQuestion(Question question);
+	void deleteQuestionById(Long id);
 }

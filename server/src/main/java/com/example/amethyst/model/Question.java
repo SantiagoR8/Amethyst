@@ -1,5 +1,6 @@
 package com.example.amethyst.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(exclude={"evaluations"})
 @Entity
 @Table(name = "questions")
 public class Question {
@@ -26,13 +37,12 @@ public class Question {
 	private String title;
 	private String body;
 	private String answer;
+	@JsonIgnore
 	@ManyToMany(mappedBy = "questions")
-	private Set<Evaluation> evaluations;
+	private Set<Evaluation> evaluations = new HashSet<>();
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
 	private Set<Option> options;
-	
-	public Question() {
-	}
 
 }
